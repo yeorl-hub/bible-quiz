@@ -6,89 +6,99 @@
 <title>요한계시록 암기카드 1~11장 (개역한글)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; }
+  body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background: #faf6ee; color: #3d2b0e; min-height: 100vh; }
 
-  header { background: #16213e; padding: 16px 20px; text-align: center; border-bottom: 2px solid #0f3460; }
-  header h1 { font-size: 1.3rem; color: #e94560; }
-  header p  { font-size: 0.8rem; color: #aaa; margin-top: 4px; }
+  header {
+    background: linear-gradient(135deg, #5c3d1a 0%, #3d2b0e 100%);
+    padding: 18px 20px; text-align: center;
+    border-bottom: 3px solid #c0853a;
+  }
+  header h1 { font-size: 1.3rem; color: #fff3e0; letter-spacing: 0.5px; }
+  header p  { font-size: 0.8rem; color: #e8c98a; margin-top: 5px; }
 
   .notice {
-    background: #2a1a00; border-left: 4px solid #f5a623;
-    padding: 10px 16px; font-size: 0.8rem; color: #f5a623; line-height: 1.5;
+    background: #fff8ee; border-left: 4px solid #c0853a;
+    padding: 10px 16px; font-size: 0.8rem; color: #7a5a2a; line-height: 1.5;
   }
 
   /* Chapter nav */
-  .ch-nav { background: #16213e; padding: 10px 14px; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #0f3460; }
+  .ch-nav {
+    background: #5c3d1a;
+    padding: 10px 14px; overflow-x: auto; white-space: nowrap;
+    border-bottom: 2px solid #c0853a;
+  }
   .ch-nav button {
     display: inline-block; margin: 3px; padding: 7px 14px;
-    background: #0f3460; color: #ccc; border: none; border-radius: 20px;
-    font-size: 0.82rem; cursor: pointer; font-family: inherit; transition: background 0.2s;
+    background: #7a5230; color: #fff3e0; border: 1px solid #c0853a;
+    border-radius: 20px; font-size: 0.82rem; cursor: pointer;
+    font-family: inherit; transition: all 0.2s;
   }
-  .ch-nav button.active { background: #e94560; color: #fff; font-weight: bold; }
-  .ch-nav button:hover:not(.active) { background: #533483; }
+  .ch-nav button.active { background: #c0853a; color: #fff; font-weight: bold; border-color: #c0853a; }
+  .ch-nav button:hover:not(.active) { background: #9c6a3a; color: #fff; }
 
   /* Progress */
-  .progress-bar { height: 5px; background: #0f3460; }
-  .progress-fill { height: 100%; background: #e94560; transition: width 0.3s; }
-  .stats { text-align: center; padding: 8px; font-size: 0.82rem; color: #aaa; }
-  .stats span { color: #e94560; font-weight: bold; }
+  .progress-bar { height: 6px; background: #e8dfc8; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #c0853a, #e8a855); transition: width 0.3s; }
+  .stats { text-align: center; padding: 8px; font-size: 0.82rem; color: #9c7f56; }
+  .stats span { color: #c0853a; font-weight: bold; }
 
   /* Section */
   .ch-section { display: none; padding: 14px; }
   .ch-section.active { display: block; }
 
   .ch-header { text-align: center; margin-bottom: 14px; }
-  .ch-header h2 { font-size: 1.1rem; color: #e94560; }
-  .ch-header p  { font-size: 0.8rem; color: #aaa; margin-top: 3px; }
+  .ch-header h2 { font-size: 1.15rem; color: #5c3d1a; font-weight: bold; }
+  .ch-header p  { font-size: 0.8rem; color: #9c7f56; margin-top: 3px; }
 
   /* Card */
   .card {
-    background: #16213e; border: 1px solid #0f3460;
-    border-radius: 10px; margin-bottom: 10px;
-    cursor: pointer; transition: border-color 0.2s; overflow: hidden;
+    background: #ffffff; border: 1px solid #e8dfc8;
+    border-radius: 12px; margin-bottom: 10px;
+    cursor: pointer; transition: all 0.2s; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(92,61,26,0.08);
   }
-  .card:hover { border-color: #533483; }
-  .card.revealed { border-color: #4caf50; }
+  .card:hover { border-color: #c0853a; background: #fff3e0; }
+  .card.revealed { border-color: #c0853a; box-shadow: 0 2px 8px rgba(192,133,58,0.25); }
 
   .card-q {
     padding: 13px 15px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 10px;
   }
-  .card-ref { font-size: 1rem; font-weight: bold; color: #e94560; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 80px); }
-  .card-hint { font-size: 0.72rem; color: #555; }
-  .card.revealed .card-hint { color: #4caf50; }
+  .card-ref { font-size: 1rem; font-weight: bold; color: #5c3d1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 80px); }
+  .card-hint { font-size: 0.72rem; color: #c0853a; white-space: nowrap; }
+  .card.revealed .card-hint { color: #9c7f56; }
 
   .card-a {
     display: none;
-    padding: 13px 15px; border-top: 1px solid #0f3460;
-    font-size: 0.93rem; line-height: 1.75; color: #ddd;
-    background: #0d1b2a;
+    padding: 13px 15px; border-top: 1px solid #e8dfc8;
+    font-size: 0.93rem; line-height: 1.8; color: #3d2b0e;
+    background: #fffdf8;
   }
   .card.revealed .card-a { display: block; }
 
-  .btn-row { display: flex; gap: 8px; margin: 4px 0 16px; }
+  .btn-row { display: flex; gap: 8px; margin: 4px 0 10px; }
   .ctrl-btn {
-    flex: 1; padding: 8px; background: #0f3460;
-    color: #aaa; border: none; border-radius: 8px;
-    font-size: 0.78rem; cursor: pointer; font-family: inherit; transition: background 0.2s;
+    flex: 1; padding: 9px; background: #fff;
+    color: #5c3d1a; border: 1px solid #e8dfc8; border-radius: 8px;
+    font-size: 0.78rem; cursor: pointer; font-family: inherit; transition: all 0.2s;
   }
-  .ctrl-btn:hover { background: #533483; color: #fff; }
-  .ctrl-btn.active-swap { background: #7b2d8b; color: #fff; }
+  .ctrl-btn:hover { background: #fff3e0; border-color: #c0853a; color: #3d2b0e; }
+  .ctrl-btn.active-swap { background: #c0853a; color: #fff; border-color: #c0853a; }
 
   /* 질문↔답 변경 모드 */
-  .swap-mode .card-ref  { color: #ddd; font-size: 0.88rem; font-weight: normal;
+  .swap-mode .card-ref  { color: #3d2b0e; font-size: 0.88rem; font-weight: normal;
                           white-space: normal; word-break: keep-all; line-height: 1.6;
                           max-width: 100%; overflow: visible; text-overflow: unset; }
   .swap-mode .card-q    { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .swap-mode .card-q .card-hint { color: #555; }
-  .swap-mode .card-a    { font-size: 1rem; font-weight: bold; color: #e94560; }
+  .swap-mode .card-q .card-hint { color: #c0853a; }
+  .swap-mode .card-a    { font-size: 1rem; font-weight: bold; color: #5c3d1a; }
   .swap-mode .card.revealed .card-a { display: block; }
 
   .mode-badge {
     display: inline-block; margin: 0 auto 8px;
-    padding: 3px 10px; border-radius: 12px;
-    font-size: 0.72rem; background: #7b2d8b; color: #fff;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 0.72rem; background: #c0853a; color: #fff;
     text-align: center;
   }
 </style>
