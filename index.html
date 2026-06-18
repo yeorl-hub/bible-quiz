@@ -55,7 +55,7 @@
     display: flex; align-items: center; justify-content: space-between;
     gap: 10px;
   }
-  .card-ref { font-size: 1rem; font-weight: bold; color: #e94560; white-space: nowrap; }
+  .card-ref { font-size: 1rem; font-weight: bold; color: #e94560; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 80px); }
   .card-hint { font-size: 0.72rem; color: #555; }
   .card.revealed .card-hint { color: #4caf50; }
 
@@ -77,7 +77,10 @@
   .ctrl-btn.active-swap { background: #7b2d8b; color: #fff; }
 
   /* 질문↔답 변경 모드 */
-  .swap-mode .card-ref  { color: #aaa; font-size: 0.82rem; font-weight: normal; }
+  .swap-mode .card-ref  { color: #ddd; font-size: 0.88rem; font-weight: normal;
+                          white-space: normal; word-break: keep-all; line-height: 1.6;
+                          max-width: 100%; overflow: visible; text-overflow: unset; }
+  .swap-mode .card-q    { flex-direction: column; align-items: flex-start; gap: 6px; }
   .swap-mode .card-q .card-hint { color: #555; }
   .swap-mode .card-a    { font-size: 1rem; font-weight: bold; color: #e94560; }
   .swap-mode .card.revealed .card-a { display: block; }
